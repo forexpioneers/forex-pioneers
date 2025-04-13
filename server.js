@@ -1,17 +1,16 @@
 // Import delle librerie necessarie
 const express = require('express');
 const axios = require('axios');
-require('dotenv').config(); // Per caricare la chiave API dal file .env
 
 const app = express();
 const port = 10000;
 
+// Chiave API di Alpha Vantage
+const apiKey = '9A95D6VNE4MREDGA'; // Inserisci qui la tua chiave API
+
 // Endpoint per ottenere le notizie
 app.get('/api/news', async (req, res) => {
   try {
-    // Chiave API da variabile d'ambiente
-    const apiKey = process.env.ALPHA_VANTAGE_API_KEY;
-
     // URL dell'API di Alpha Vantage per ottenere i dati delle azioni
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=${apiKey}`;
 
@@ -26,6 +25,9 @@ app.get('/api/news', async (req, res) => {
     res.status(500).json({ error: 'Error fetching news' });
   }
 });
+
+// Serve file statici (per esempio HTML, CSS, JS)
+app.use(express.static('public'));
 
 // Avvia il server
 app.listen(port, () => {
