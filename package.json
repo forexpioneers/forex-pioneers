@@ -1,37 +1,16 @@
-<<<<<<< HEAD
 {
-  "name": "forex-pioneers",
+  "name": "forexpioneers-server",
   "version": "1.0.0",
-  "description": "ForexPioneers trading platform",
+  "description": "Forex Pioneers server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "axios": "^0.24.0",
-    "cors": "^2.8.5"
+    "axios": "^0.21.1"
   },
-  "engines": {
-    "node": "16.x"
-  }
+  "devDependencies": {},
+  "author": "Mattia Nosdeo",
+  "license": "ISC"
 }
-=======
-{
-  "name": "forex-pioneers",
-  "version": "1.0.0",
-  "description": "ForexPioneers trading platform",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.17.1",
-    "axios": "^0.24.0",
-    "cors": "^2.8.5"
-  },
-  "engines": {
-    "node": "16.x"
-  }
-}
->>>>>>> 5ba6933279556a7270064b68212628b8bb79d55b
