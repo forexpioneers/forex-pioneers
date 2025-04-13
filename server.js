@@ -6,7 +6,7 @@ const app = express();
 const port = 10000;
 
 // Chiave API di Alpha Vantage
-const apiKey = '6d72ddc02567443cac6bbb44e2b1b0a8'; // Inserisci qui la tua chiave API
+const apiKey = 'LISDU46A2I8BLHA8'; // Inserisci qui la tua chiave API
 
 // Endpoint per ottenere le notizie
 app.get('/api/news', async (req, res) => {
