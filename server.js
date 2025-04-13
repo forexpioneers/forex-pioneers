@@ -1,42 +1,33 @@
+// Import delle librerie necessarie
 const express = require('express');
-const axios = require('axios'); // Assicurati di installare axios con npm install axios
+const axios = require('axios');
+require('dotenv').config(); // Per caricare la chiave API dal file .env
+
 const app = express();
-const port = process.env.PORT || 10000;
+const port = 10000;
 
-// Aggiungi una rotta principale per verificare che il server sia attivo
-app.get('/', (req, res) => {
-    res.send('API is working!');
-});
-
-// Aggiungi una rotta per ottenere le notizie Forex
+// Endpoint per ottenere le notizie
 app.get('/api/news', async (req, res) => {
-    try {
-        // Sostituisci con l'URL dell'API di notizie corretto (ad esempio, da una fonte Forex)
-        const response = await axios.get('https://api.pexels.com/v1/curated', {
-            headers: {
-                Authorization: '9A95D6VNE4MREDGA' // Usa la tua API key qui
-            }
-        });
+  try {
+    // Chiave API da variabile d'ambiente
+    const apiKey = process.env.ALPHA_VANTAGE_API_KEY;
 
-        // Restituisci i dati delle notizie ricevuti dall'API
-        res.json(response.data);
-    } catch (error) {
-        console.error('Error fetching news:', error);
-        res.status(500).send('Error fetching news');
-    }
-});
+    // URL dell'API di Alpha Vantage per ottenere i dati delle azioni
+    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=${apiKey}`;
 
-// Aggiungi una rotta per la pagina di contatto
-app.get('/contact', (req, res) => {
-    res.send('This is the Contact page');
-});
+    // Richiesta API per ottenere i dati
+    const response = await axios.get(url);
 
-// Aggiungi una rotta per la pagina "About"
-app.get('/about', (req, res) => {
-    res.send('This is the About page');
+    // Restituisci i dati al client
+    res.json(response.data);
+  } catch (error) {
+    // In caso di errore, restituire un messaggio di errore
+    console.error('Error fetching data from Alpha Vantage:', error);
+    res.status(500).json({ error: 'Error fetching news' });
+  }
 });
 
 // Avvia il server
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
