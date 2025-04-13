@@ -14,7 +14,7 @@ app.get('/api/news', async (req, res) => {
         // Sostituisci con l'URL dell'API di notizie corretto (ad esempio, da una fonte Forex)
         const response = await axios.get('https://api.pexels.com/v1/curated', {
             headers: {
-                Authorization: '6d72ddc02567443cac6bbb44e2b1b0a8' // Usa la tua API key qui
+                Authorization: '9A95D6VNE4MREDGA' // Usa la tua API key qui
             }
         });
 
